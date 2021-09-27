@@ -1,1 +1,9 @@
-# mvvm-example-flutter
+# iOS Simulator
+```
+open -a Simulator
+
+```
+# start
+```
+flutter run
+```
