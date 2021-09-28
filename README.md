@@ -1,14 +1,24 @@
-# iOS Simulator
+# Simulator
 ```
 open -a Simulator
-
 ```
-# start
+
+# Run
 ```
 flutter run
 ```
 
+# generate a model functions
 ```
-# generate a serialize functions
 flutter pub run build_runner build
+```
+
+# generate a viewModel functions
+```
+flutter packages pub run build_runner build
+```
+
+# run all tests 
+```
+flutter test test/
 ```
