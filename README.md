@@ -22,3 +22,11 @@ flutter packages pub run build_runner build
 ```
 flutter test test/
 ```
+
+
+# Snippets 
+```
+2bModel
+2bView
+2bViewModel
+```
