@@ -7,3 +7,8 @@ open -a Simulator
 ```
 flutter run
 ```
+
+```
+# generate a serialize functions
+flutter pub run build_runner build
+```
