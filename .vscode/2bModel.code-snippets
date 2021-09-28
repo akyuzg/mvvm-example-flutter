@@ -1,5 +1,5 @@
 {
-	"Serializable Model": {
+	"Create a Model": {
 		"scope": "dart",
 		"prefix": "2bModel",
 		"body": [
@@ -28,6 +28,6 @@
 			"  }",
 			"}",
 		],
-		"description": "Create a Model with JsonSerializable"
+		"description": "Create a Model"
 	}
 }

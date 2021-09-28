@@ -1,0 +1,37 @@
+{
+	"Create a View": {
+		"scope": "dart",
+		"prefix": "2bView",
+		"body": [
+            "import 'package:flutter/material.dart';",
+            "import 'package:mvvm_example_flutter/core/base/base_view.dart';",
+            "",
+            "class $1View extends StatelessWidget {",
+            "  const $1View({Key? key}) : super(key: key);",
+            "",
+            "  @override",
+            "  Widget build(BuildContext context) {",
+            "      return BaseView<$1ViewModel>(",
+            "    viewModel: $1ViewModel(),",
+            "    onModelReady: (model) {",
+            "    model.setContext(context);",
+            "    model.init();",
+            "  },",
+            "  onPageBuilder: (BuildContext context, $1ViewModel value) =>",
+            "    buildScaffoldBody(context, value),",
+            "  );",
+            "}",
+            "",
+            "  Widget buildScaffoldBody(BuildContext context, $1ViewModel viewModel) {",
+            "    return const Scaffold(",
+            "    body: SafeArea(",
+            "      child: Center(child: Text('$1 page'))",
+            "    ));",
+            "  }",
+            "}"
+		],
+		"description": "Create a View"
+	}
+}
+
+
