@@ -1,0 +1,30 @@
+{
+	"Serializable Model": {
+		"scope": "dart",
+		"prefix": "2bModel",
+		"body": [
+			"import 'package:json_annotation/json_annotation.dart';",
+			"",
+			"part '$1.g.dart';",
+			"",
+			"@JsonSerializable()",
+			"class $2 {",
+			"  String? name;",
+			"  $2({this.name});",
+			"",
+			"  $2.fromJson(Map<String, dynamic> json) {",
+			"    name = json['name'] as String?;",
+			"  }",
+			"",
+			"  Map<String, dynamic> toJson() {",
+			"    return _$$2ToJson(this);",
+			"  }",
+			"",
+			"  $2 fromJson(Map<String, Object?> json) {",
+			"    return _$$2FromJson(json);",
+			"  }",
+			"}",
+		],
+		"description": "Create a Model with JsonSerializable"
+	}
+}
