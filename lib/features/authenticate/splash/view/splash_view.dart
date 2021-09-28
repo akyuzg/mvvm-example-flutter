@@ -7,21 +7,19 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      return BaseView<SplashViewModel>(
-    viewModel: SplashViewModel(),
-    onModelReady: (model) {
-    model.setContext(context);
-    model.init();
-  },
-  onPageBuilder: (BuildContext context, SplashViewModel value) =>
-    buildScaffoldBody(context, value),
-  );
-}
+    return BaseView<SplashViewModel>(
+      viewModel: SplashViewModel(),
+      onModelReady: (vm) {
+        vm.setContext(context);
+        vm.init();
+      },
+      onPageBuilder: (BuildContext context, SplashViewModel value) =>
+          buildScaffoldBody(context, value),
+    );
+  }
 
   Widget buildScaffoldBody(BuildContext context, SplashViewModel viewModel) {
     return const Scaffold(
-    body: SafeArea(
-      child: Center(child: Text('Splash page'))
-    ));
+        body: SafeArea(child: Center(child: Text('Splash page'))));
   }
 }
