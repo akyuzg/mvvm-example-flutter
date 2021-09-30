@@ -8,8 +8,9 @@ class SplashService {
 
   SplashService(this.networkManager);
 
-  Future<SplashResponse?> getSplash() async {
-    Response raw = await networkManager.dio!.get(NetworkConstants.SPLASH);
+  Future<SplashResponse> getSplash() async {
+    Response raw = await networkManager.dio.get(NetworkConstants.SPLASH);
+    
     SplashResponse response = SplashResponse.fromJson(raw.data);
     return response;
   }
