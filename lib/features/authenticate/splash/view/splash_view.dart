@@ -19,7 +19,14 @@ class SplashView extends StatelessWidget {
   }
 
   Widget buildScaffoldBody(BuildContext context, SplashViewModel viewModel) {
-    return const Scaffold(
-        body: SafeArea(child: Center(child: Text('Splash page'))));
+    return Scaffold(
+        backgroundColor: Theme.of(context).primaryColor,
+        body: SafeArea(
+            child: Center(
+                child: Text('SEMBOL',
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold)))));
   }
 }
