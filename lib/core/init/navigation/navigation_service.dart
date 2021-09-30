@@ -47,7 +47,6 @@ class NavigationService implements INavigationService {
     await mainNavigator.currentState!.pushNamed(path!, arguments: data);
   }
 
-  @override
   Future<void> openApp() async {
     await mainNavigator.currentState?.pushReplacement(PageRouteBuilder(
       pageBuilder: (context, animation1, animation2) => const MainView(),
