@@ -6,8 +6,10 @@ class NotFoundNavigationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: avoid_unnecessary_containers
-    return Container(
-      child: const Center(child: Text("page not found")),
+    return const Scaffold(
+      body: SafeArea(
+        child: Center(child: Text("page not found")),
+      ),
     );
   }
 }
