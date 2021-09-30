@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/Tabbar/ic_credittest</title>
+    <g id="Icons/Tabbar/ic_credit" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8,11.1111111 L8,23.8888889 C8,26.7127778 12.577,29 18.2222222,29 C23.8674444,29 28.4444444,26.7127778 28.4444444,23.8888889 L28.4444444,11.1111111 M8,11.1111111 C8,13.935 12.577,16.2222222 18.2222222,16.2222222 C23.8674444,16.2222222 28.4444444,13.935 28.4444444,11.1111111 M8,11.1111111 C8,8.28722222 12.577,6 18.2222222,6 C23.8674444,6 28.4444444,8.28722222 28.4444444,11.1111111 M28.4444444,17.5 C28.4444444,20.3238889 23.8674444,22.6111111 18.2222222,22.6111111 C12.577,22.6111111 8,20.3238889 8,17.5" id="Shape" stroke="#9B9B9B" stroke-width="2.1"></path>
+    </g>
+</svg>
