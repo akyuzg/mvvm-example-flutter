@@ -15,7 +15,7 @@ class NetworkManager {
     return obj;
   }
 
-  Dio? dio;
+  late final Dio dio;
 
   NetworkManager._init() {
     final baseOptions = BaseOptions(baseUrl: NetworkConstants.BASE_URL, headers: {});
