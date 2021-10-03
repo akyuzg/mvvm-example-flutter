@@ -7,11 +7,16 @@ import 'package:mvvm_example_flutter/core/init/notifier/provider_list.dart';
 import 'package:mvvm_example_flutter/core/init/theme/light/theme_data.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await _init();
   runApp(MultiProvider(
     providers: [...ApplicationProvider.instance.dependItems],
     child: const MyApp(),
   ));
+}
+
+Future<void> _init() async {
+  WidgetsFlutterBinding.ensureInitialized();
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: themeData,
       navigatorKey: NavigationService.instance.mainNavigator,
       onGenerateRoute: NavigationRoute.instance.generateRoute,
-      initialRoute: NavigationContants.DEFAULT,
+      initialRoute: NavigationContants.navDefault,
     );
   }
 }

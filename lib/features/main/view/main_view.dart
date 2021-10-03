@@ -3,21 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mvvm_example_flutter/core/base/base_view.dart';
 import 'package:mvvm_example_flutter/core/constants/enums/tab_enum.dart';
+import 'package:mvvm_example_flutter/core/init/navigation/navigation_service.dart';
 import 'package:mvvm_example_flutter/features/_product/tabnavigator/bottom_navigation.dart';
 import 'package:mvvm_example_flutter/features/_product/tabnavigator/tab_navigator.dart';
 import 'package:mvvm_example_flutter/features/main/viewmodel/main_view_model.dart';
 
 class _MainView extends State<MainView> {
-  //const _MainView({Key? key}) : super(key: key);
-
-  TabItem _currentTab = TabItem.home;
-
-  final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys = {
-    TabItem.home: GlobalKey<NavigatorState>(),
-    TabItem.store: GlobalKey<NavigatorState>(),
-    TabItem.campaign: GlobalKey<NavigatorState>(),
-    TabItem.profile: GlobalKey<NavigatorState>()
-  };
+  var navigationService = NavigationService.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -28,59 +20,67 @@ class _MainView extends State<MainView> {
           vm.init();
         },
         onPageBuilder: (BuildContext context, MainViewModel viewModel) =>
-            buildWillPopScope(viewModel));
+            WillPopScope(
+              onWillPop: _onWillPop,
+              child: _buildScaffold(),
+            ));
   }
 
-  //For Android back button
-  Widget buildWillPopScope(MainViewModel vm) {
-    return WillPopScope(
-        onWillPop: () async {
-          final isFirstRouteInCurrentTab =
-              !await navigatorKeys[_currentTab]!.currentState!.maybePop();
-          if (isFirstRouteInCurrentTab) {
-            // if not on the 'main' tab
-            if (_currentTab != TabItem.home) {
-              // select 'main' tab
-              _selectTab(TabItem.home);
-              // back button handled by app
-              return false;
-            }
-          }
-          // let system handle back button if we're on the first route
-          return isFirstRouteInCurrentTab;
-        },
-        child: buildScaffold(context, vm));
+  Future<bool> _onWillPop() async {
+    final isFirstRouteInCurrentTab = !await navigationService
+        .navigatorKeys[navigationService.currentTab]!.currentState!
+        .maybePop();
+    if (isFirstRouteInCurrentTab) {
+      // if not on the 'main' tab
+      if (navigationService.currentTab != TabItem.home) {
+        // select 'main' tab
+        _selectTab(TabItem.home);
+        // back button handled by app
+        return false;
+      }
+    }
+    // let system handle back button if we're on the first route
+    return isFirstRouteInCurrentTab;
   }
 
-  Widget buildScaffold(BuildContext context, MainViewModel viewModel) {
+  Scaffold _buildScaffold() {
     return Scaffold(
-      body: Stack(children: [
-        _buildOffstageNavigator(context, TabItem.home),
-        _buildOffstageNavigator(context, TabItem.store),
-        _buildOffstageNavigator(context, TabItem.campaign),
-        _buildOffstageNavigator(context, TabItem.profile),
-      ]),
-      bottomNavigationBar: BottomNavigation(
-        currentTab: _currentTab,
-        onSelectTab: _selectTab,
-      ),
+      body: _buildTabContainers(),
+      bottomNavigationBar: _buildBottomNavigation(),
+    );
+  }
+
+  Stack _buildTabContainers() {
+    return Stack(children: [
+      _buildOffstageNavigator(TabItem.home),
+      _buildOffstageNavigator(TabItem.store),
+      _buildOffstageNavigator(TabItem.campaign),
+      _buildOffstageNavigator(TabItem.profile),
+    ]);
+  }
+
+  BottomNavigation _buildBottomNavigation() {
+    return BottomNavigation(
+      currentTab: navigationService.currentTab,
+      onSelectTab: _selectTab,
     );
   }
 
   void _selectTab(TabItem tabItem) {
-    if (tabItem == _currentTab) {
+    if (tabItem == navigationService.currentTab) {
       // pop to first route
-      navigatorKeys[tabItem]!.currentState!.popUntil((route) => route.isFirst);
+      navigationService.navigatorKeys[tabItem]!.currentState!
+          .popUntil((route) => route.isFirst);
     } else {
-      setState(() => _currentTab = tabItem);
+      setState(() => navigationService.currentTab = tabItem);
     }
   }
 
-  Widget _buildOffstageNavigator(BuildContext context, TabItem tabItem) {
+  Widget _buildOffstageNavigator(TabItem tabItem) {
     return Offstage(
-      offstage: _currentTab != tabItem,
+      offstage: navigationService.currentTab != tabItem,
       child: TabNavigator(
-        navigatorKey: navigatorKeys[tabItem],
+        navigatorKey: navigationService.navigatorKeys[tabItem],
         tabItem: tabItem,
       ),
     );
