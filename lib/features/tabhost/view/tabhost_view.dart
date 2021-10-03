@@ -6,20 +6,20 @@ import 'package:mvvm_example_flutter/core/constants/enums/tab_enum.dart';
 import 'package:mvvm_example_flutter/core/init/navigation/navigation_service.dart';
 import 'package:mvvm_example_flutter/features/_product/tabnavigator/bottom_navigation.dart';
 import 'package:mvvm_example_flutter/features/_product/tabnavigator/tab_navigator.dart';
-import 'package:mvvm_example_flutter/features/main/viewmodel/main_view_model.dart';
+import 'package:mvvm_example_flutter/features/tabhost/viewmodel/tabhost_view_model.dart';
 
-class _MainView extends State<MainView> {
+class _TabHostView extends State<TabHostView> {
   var navigationService = NavigationService.instance;
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<MainViewModel>(
-        viewModel: MainViewModel(),
+    return BaseView<TabHostViewModel>(
+        viewModel: TabHostViewModel(),
         onModelReady: (vm) {
           vm.setContext(context);
           vm.init();
         },
-        onPageBuilder: (BuildContext context, MainViewModel viewModel) =>
+        onPageBuilder: (BuildContext context, TabHostViewModel viewModel) =>
             WillPopScope(
               onWillPop: _onWillPop,
               child: _buildScaffold(),
@@ -87,9 +87,9 @@ class _MainView extends State<MainView> {
   }
 }
 
-class MainView extends StatefulWidget {
-  const MainView({Key? key}) : super(key: key);
+class TabHostView extends StatefulWidget {
+  const TabHostView({Key? key}) : super(key: key);
 
   @override
-  State<MainView> createState() => _MainView();
+  State<TabHostView> createState() => _TabHostView();
 }
