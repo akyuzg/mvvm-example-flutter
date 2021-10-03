@@ -65,7 +65,7 @@ class _TabHostView extends State<TabHostView> {
     return Offstage(
       offstage: viewModel.navigation.currentTab != tabItem,
       child: TabNavigator(
-        navigatorKey: viewModel.navigation.currentTabNavigatorKey,
+        navigatorKey: viewModel.navigation.navigatorKeys[tabItem],
         tabItem: tabItem,
       ),
     );

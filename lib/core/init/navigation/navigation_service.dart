@@ -24,8 +24,6 @@ class NavigationService implements INavigationService {
   final removeAllOldRoutes = (Route<dynamic> route) => false;
   NavigatorState get _currentTabState =>
       navigatorKeys[currentTab]!.currentState!;
-  GlobalKey<NavigatorState> get currentTabNavigatorKey =>
-      navigatorKeys[currentTab]!;
 
   Future<bool> get isFirstRouteInTheCurrentTab => _currentTabState.maybePop();
 
