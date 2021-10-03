@@ -14,10 +14,10 @@ class AssetCacheManager {
 
   void loadAssets() async {
     await Future.wait([
-      _cacheSvg(tabName[TabItem.home]!),
-      _cacheSvg(tabName[TabItem.store]!),
-      _cacheSvg(tabName[TabItem.campaign]!),
-      _cacheSvg(tabName[TabItem.profile]!),
+      _cacheSvg(tabIcons[TabItem.home]!),
+      _cacheSvg(tabIcons[TabItem.store]!),
+      _cacheSvg(tabIcons[TabItem.campaign]!),
+      _cacheSvg(tabIcons[TabItem.profile]!),
     ]);
   }
 
