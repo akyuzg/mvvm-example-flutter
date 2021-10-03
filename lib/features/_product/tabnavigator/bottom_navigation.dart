@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mvvm_example_flutter/core/constants/enums/tab_enum.dart';
@@ -6,7 +5,9 @@ import 'package:mvvm_example_flutter/core/constants/navigation/bottom_navigation
 import 'package:mvvm_example_flutter/core/extensions/string_extension.dart';
 
 class BottomNavigation extends StatelessWidget {
-  BottomNavigation({required this.currentTab, required this.onSelectTab});
+  const BottomNavigation(
+      {Key? key, required this.currentTab, required this.onSelectTab})
+      : super(key: key);
   final TabItem currentTab;
   final ValueChanged<TabItem> onSelectTab;
 
@@ -31,16 +32,13 @@ class BottomNavigation extends StatelessWidget {
   BottomNavigationBarItem _buildItem(BuildContext context, TabItem tabItem) {
     return BottomNavigationBarItem(
       icon: SizedBox(
-          width: 28,
-          height: 28,
-          child: SvgPicture.asset(tabName[tabItem]!.toSVG,
+          width: 32,
+          height: 32,
+          child: SvgPicture.asset(tabIcons[tabItem]!.toSVG,
               color: currentTab == tabItem
                   ? Theme.of(context).primaryColor
                   : Colors.grey)),
-     
       label: tabName[tabItem],
     );
   }
-
- 
 }

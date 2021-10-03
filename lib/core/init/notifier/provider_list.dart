@@ -16,6 +16,6 @@ class ApplicationProvider {
     ChangeNotifierProvider(
       create: (context) => ThemeNotifier(),
     ),
-    Provider.value(value: NavigationService.instance)
+    Provider.value(value: NavigationService.instance),
   ];
 }

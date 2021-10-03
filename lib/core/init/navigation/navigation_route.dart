@@ -12,9 +12,9 @@ class NavigationRoute {
 
   Route<dynamic> generateRoute(RouteSettings args) {
     switch (args.name) {
-      case NavigationContants.DEFAULT:
+      case NavigationContants.navDefault:
         return navigate(const SplashView());
-      case NavigationContants.HOME_VIEW:
+      case NavigationContants.navMain:
         return navigate(const MainView());
       default:
         return navigate(const NotFoundNavigationWidget());
