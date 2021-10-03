@@ -18,8 +18,8 @@ class NetworkManager {
   late final Dio dio;
 
   NetworkManager._init() {
-    final baseOptions = BaseOptions(baseUrl: NetworkConstants.BASE_URL, headers: {});
+    final baseOptions =
+        BaseOptions(baseUrl: NetworkConstants.baseUrl, headers: {});
     dio = Dio(baseOptions);
   }
-
 }
