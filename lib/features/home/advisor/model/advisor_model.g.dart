@@ -10,11 +10,12 @@ AdvisorModel _$AdvisorModelFromJson(Map<String, dynamic> json) {
   return AdvisorModel(
     name: json['name'] as String?,
     imgUrl: json['img_url'] as String?,
-  );
+  )..status = json['status'] as int?;
 }
 
 Map<String, dynamic> _$AdvisorModelToJson(AdvisorModel instance) =>
     <String, dynamic>{
+      'status': instance.status,
       'name': instance.name,
       'img_url': instance.imgUrl,
     };

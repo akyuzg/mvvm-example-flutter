@@ -6,11 +6,10 @@ part 'advisors_response.g.dart';
 
 @JsonSerializable()
 class AdvisorsResponse extends BaseModel<AdvisorsResponse> {
-  int? status;
   @JsonKey(name: "tellers")
   List<AdvisorModel>? advisors;
 
-  AdvisorsResponse({this.status, this.advisors});
+  AdvisorsResponse({this.advisors});
 
   @override
   Map<String, dynamic> toJson() {

@@ -8,11 +8,10 @@ part of 'advisors_response.dart';
 
 AdvisorsResponse _$AdvisorsResponseFromJson(Map<String, dynamic> json) {
   return AdvisorsResponse(
-    status: json['status'] as int?,
     advisors: (json['tellers'] as List<dynamic>?)
         ?.map((e) => AdvisorModel.fromJson(e as Map<String, dynamic>))
         .toList(),
-  );
+  )..status = json['status'] as int?;
 }
 
 Map<String, dynamic> _$AdvisorsResponseToJson(AdvisorsResponse instance) =>
