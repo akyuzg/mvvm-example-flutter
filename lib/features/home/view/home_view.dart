@@ -39,16 +39,14 @@ class HomeView extends StatelessWidget {
   }
 
   buildAdvisorsList(HomeViewModel viewModel, BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemBuilder: (context, index) => Column(
-          children: [
-            AdvisorItemView(advisor: viewModel.advisors![index]),
-            const SizedBox(height: 8),
-          ],
-        ),
-        itemCount: viewModel.advisors!.length,
+    return ListView.builder(
+      itemBuilder: (context, index) => Column(
+        children: [
+          AdvisorItemView(advisor: viewModel.advisors![index]),
+          const SizedBox(height: 8),
+        ],
       ),
+      itemCount: viewModel.advisors!.length,
     );
   }
 
