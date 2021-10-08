@@ -2,9 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mvvm_example_flutter/core/base/base_view.dart';
 import 'package:mvvm_example_flutter/features/_product/advisor/viewmodel/advisor_item_viewmodel.dart';
+import 'package:mvvm_example_flutter/features/home/advisor/model/advisor_model.dart';
 
 class AdvisorItemView extends StatelessWidget {
-  const AdvisorItemView({Key? key}) : super(key: key);
+  final AdvisorModel advisor;
+
+  const AdvisorItemView({Key? key, required this.advisor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +24,11 @@ class AdvisorItemView extends StatelessWidget {
 
   Widget buildScaffoldBody(
       BuildContext context, AdvisorItemViewModel viewModel) {
+    var avatar = CircleAvatar(
+      radius: 40.0,
+      backgroundColor: const Color(0xFFF0F1F4),
+      backgroundImage: CachedNetworkImageProvider(advisor.imgUrl ?? ""),
+    );
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
@@ -31,20 +39,16 @@ class AdvisorItemView extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const CircleAvatar(
-            radius: 40.0,
-            backgroundColor: Color(0x33C4C4C4),
-            backgroundImage: CachedNetworkImageProvider(
-                "https://api.sembolfal.com/cdn-cgi/image/width=120,quality=85,format=auto/img/users/535486.jpg"),
-          ),
+          avatar,
           Padding(
             padding: const EdgeInsets.only(left: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Manastırlı',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                Text(
+                  advisor.name!,
+                  style: const TextStyle(
+                      fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 Row(
                   children: const [

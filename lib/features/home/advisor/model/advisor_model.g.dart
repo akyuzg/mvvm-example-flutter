@@ -1,18 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'teller_model.dart';
+part of 'advisor_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TellerModel _$TellerModelFromJson(Map<String, dynamic> json) {
-  return TellerModel(
+AdvisorModel _$AdvisorModelFromJson(Map<String, dynamic> json) {
+  return AdvisorModel(
     name: json['name'] as String?,
+    imgUrl: json['img_url'] as String?,
   );
 }
 
-Map<String, dynamic> _$TellerModelToJson(TellerModel instance) =>
+Map<String, dynamic> _$AdvisorModelToJson(AdvisorModel instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'img_url': instance.imgUrl,
     };
