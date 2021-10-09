@@ -1,7 +1,7 @@
 abstract class BaseModel<T> {
-  int? status;
-  BaseModel({this.status});
+  BaseModel();
 
   Map<String, Object?> toJson();
   T fromJson(Map<String, Object> json);
+  BaseModel.fromJson(Map<String, Object> json);
 }
