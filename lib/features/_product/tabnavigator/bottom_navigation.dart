@@ -32,6 +32,7 @@ class BottomNavigation extends StatelessWidget {
   BottomNavigationBarItem _buildItem(BuildContext context, TabItem tabItem) {
     return BottomNavigationBarItem(
       icon: SizedBox(
+          key: Key(tabIcons[tabItem] ?? "TabKey"),
           width: 32,
           height: 32,
           child: SvgPicture.asset(tabIcons[tabItem]!.toSVG,
