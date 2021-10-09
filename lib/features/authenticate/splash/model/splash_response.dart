@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mvvm_example_flutter/core/base/base_model.dart';
+import 'package:mvvm_example_flutter/core/base/base_response_model.dart';
 part 'splash_response.g.dart';
 
 @JsonSerializable()
-class SplashResponse extends BaseModel<SplashResponse> {
+class SplashResponse extends BaseResponse {
   SplashResponse();
 
   @override

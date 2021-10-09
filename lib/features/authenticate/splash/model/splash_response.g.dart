@@ -7,10 +7,8 @@ part of 'splash_response.dart';
 // **************************************************************************
 
 SplashResponse _$SplashResponseFromJson(Map<String, dynamic> json) {
-  return SplashResponse()..status = json['status'] as int?;
+  return SplashResponse();
 }
 
 Map<String, dynamic> _$SplashResponseToJson(SplashResponse instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-    };
+    <String, dynamic>{};
