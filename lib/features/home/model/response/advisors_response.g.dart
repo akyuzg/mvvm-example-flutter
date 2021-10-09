@@ -11,11 +11,14 @@ AdvisorsResponse _$AdvisorsResponseFromJson(Map<String, dynamic> json) {
     advisors: (json['tellers'] as List<dynamic>?)
         ?.map((e) => AdvisorModel.fromJson(e as Map<String, dynamic>))
         .toList(),
-  )..status = json['status'] as int?;
+  )
+    ..status = json['status'] as int?
+    ..message = json['message'] as String?;
 }
 
 Map<String, dynamic> _$AdvisorsResponseToJson(AdvisorsResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
+      'message': instance.message,
       'tellers': instance.advisors,
     };
