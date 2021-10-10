@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:mvvm_example_flutter/core/base/base_view_model.dart';
+import 'package:mvvm_example_flutter/core/constants/network/response_contants.dart';
 import 'package:mvvm_example_flutter/features/home/advisor/model/advisor_model.dart';
+import 'package:mvvm_example_flutter/features/home/model/response/advisors_response.dart';
 import 'package:mvvm_example_flutter/features/home/service/home_service.dart';
 
 part 'home_viewmodel.g.dart';
@@ -15,6 +17,9 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   List<AdvisorModel>? advisors = [];
 
   @observable
+  String? errorMesage;
+
+  @observable
   bool isLoading = false;
 
   @override
@@ -23,7 +28,6 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   @override
   void init() {
     homeService = HomeService(networkManager);
-
     getListAll();
   }
 
@@ -35,7 +39,12 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   @action
   Future<void> getListAll() async {
     _changeLoading();
-    advisors = await homeService.fetchAdvisors();
+    AdvisorsResponse response = await homeService.fetchAdvisors();
+
+    if (response.status == ResponseStatus.OK) {
+      advisors = response.advisors;
+    }
+    errorMesage = response.message;
     _changeLoading();
   }
 }
