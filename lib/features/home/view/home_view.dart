@@ -28,12 +28,36 @@ class HomeView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Observer(builder: (_) {
             return viewModel.isLoading
-                ? buildCenter()
-                : viewModel.advisors == null || viewModel.advisors!.isEmpty
-                    ? const Center(child: Text('Not Found'))
-                    : buildAdvisorsList(viewModel, context);
+                ? buildLoading()
+                : viewModel.errorMesage != null
+                    ? buildRetry(viewModel)
+                    : (viewModel.advisors == null || viewModel.advisors!.isEmpty
+                        ? const Center(child: Text('Advisors not Found'))
+                        : buildAdvisorsList(viewModel, context));
           }),
         ),
+      ),
+    );
+  }
+
+  SizedBox buildRetry(HomeViewModel viewModel) {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(viewModel.errorMesage ?? "error"),
+          TextButton(
+            style: TextButton.styleFrom(
+              primary: Colors.blue,
+              onSurface: Colors.red,
+            ),
+            onPressed: () {
+              viewModel.getListAll();
+            },
+            child: const Text('Retry'),
+          )
+        ],
       ),
     );
   }
@@ -50,11 +74,5 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Center buildCenter() => const Center(child: CircularProgressIndicator());
-
-  Column deneme() {
-    return Column(
-      children: const [],
-    );
-  }
+  Center buildLoading() => const Center(child: CircularProgressIndicator());
 }
