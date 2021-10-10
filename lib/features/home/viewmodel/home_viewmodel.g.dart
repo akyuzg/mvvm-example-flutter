@@ -24,6 +24,21 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  final _$errorMesageAtom = Atom(name: '_HomeViewModelBase.errorMesage');
+
+  @override
+  String? get errorMesage {
+    _$errorMesageAtom.reportRead();
+    return super.errorMesage;
+  }
+
+  @override
+  set errorMesage(String? value) {
+    _$errorMesageAtom.reportWrite(value, super.errorMesage, () {
+      super.errorMesage = value;
+    });
+  }
+
   final _$isLoadingAtom = Atom(name: '_HomeViewModelBase.isLoading');
 
   @override
@@ -64,6 +79,7 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
   String toString() {
     return '''
 advisors: ${advisors},
+errorMesage: ${errorMesage},
 isLoading: ${isLoading}
     ''';
   }
