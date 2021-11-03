@@ -6,8 +6,11 @@ import 'package:mvvm_example_flutter/features/home/service/ihome_service.dart';
 class HomeService extends IHomeService {
   HomeService(NetworkManager manager) : super(manager);
 
-  Future<dynamic> fetchAdvisors() async {
-    final data = await networkManager.get(NetworkConstants.getAdvisors);
-    return AdvisorsResponse.fromJson(data);
+  Future<AdvisorsResponse> fetchAdvisors() async {
+    AdvisorsResponse data = await networkManager.get(
+      path: NetworkConstants.getAdvisors,
+      model: AdvisorsResponse(),
+    );
+    return data;
   }
 }

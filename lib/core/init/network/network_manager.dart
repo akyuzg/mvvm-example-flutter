@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:mvvm_example_flutter/core/base/base_model.dart';
+import 'package:mvvm_example_flutter/core/base/base_response_model.dart';
 import 'package:mvvm_example_flutter/core/constants/network/network_contants.dart';
 
 class NetworkManager {
@@ -12,13 +14,18 @@ class NetworkManager {
     return _instance;
   }
 
-  dynamic get(String path) async {
+  Future<dynamic> get<T extends BaseResponse>(
+      {required String path, required T model}) async {
     try {
       Response raw = (await dio.get(path));
-      return raw.data;
+      return _parseModel(model, raw.data);
     } on DioError catch (e) {
-      return decodeErrorResponse(e);
+      return _parseModel(model, decodeErrorResponse(e));
     }
+  }
+
+  T _parseModel<T extends BaseResponse>(T model, dynamic data) {
+    return model.fromJson(data) as T;
   }
 
   factory NetworkManager.getInstance() {
